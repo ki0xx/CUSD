@@ -1,0 +1,63 @@
+pragma solidity ^0.6.0;
+
+import "https://github.com/cosmos/cosmos-sdk/x/auth/contracts/BaseAccount.sol";
+
+// The stablecoin contract
+contract Stablecoin {
+    // The stablecoin's symbol
+    string public symbol;
+    // The stablecoin's name
+    string public name;
+    // The stablecoin's decimal precision
+    uint8 public decimals;
+    // The stablecoin's total supply
+    uint256 public totalSupply;
+    // The stablecoin's current collateralization ratio (i.e., the value of the collateral relative to the stablecoin's total supply)
+    uint256 public collateralizationRatio;
+    // The stablecoin's minimum collateralization ratio (i.e., the minimum value of the collateral relative to the stablecoin's total supply that must be maintained)
+    uint256 public minCollateralizationRatio;
+
+    // The address of the contract that holds the Paxos Gold collateral
+    address public paxosGoldCollateral;
+    // The amount of Paxos Gold collateral held by the contract
+    uint256 public paxosGoldCollateralAmount;
+    // The address of the contract that holds the BTC collateral
+    address public btcCollateral;
+    // The amount of BTC collateral held by the contract
+    uint256 public btcCollateralAmount;
+    // The address of the contract that holds the ETH collateral
+    address public ethCollateral;
+    // The amount of ETH collateral held by the contract
+    uint256 public ethCollateralAmount;
+    // The address of the contract that holds the USDC collateral
+    address public usdcCollateral;
+    // The amount of USDC collateral held by the contract
+    uint256 public usdcCollateralAmount;
+    // The address of the contract that holds the USDT collateral
+    address public usdtCollateral;
+    // The amount of USDT collateral held by the contract
+    uint256 public usdtCollateralAmount;
+    // The address of the contract that holds the BUSD collateral
+    address public busdCollateral;
+    // The amount of BUSD collateral held by the contract
+    uint256 public busdCollateralAmount;
+    // The address of the contract that holds the EUROC collateral
+    address public eurocCollateral;
+    // The amount of EUROC collateral held by the contract
+    uint256 public eurocCollateralAmount;
+
+    // The stablecoin's owner
+    address public owner;
+    // The list of accounts that hold the stablecoin
+    mapping (address => uint256) public balances;
+    // The list of approvals granted by the accounts to spend the stablecoin
+    mapping (address => mapping (address => bool)) public allowed;
+
+    // Events
+    event Transfer(address indexed from, address indexed to, uint256 value);
+    event Approval(address indexed owner, address indexed spender, uint256 value);
+
+    // Constructor function
+    constructor(string memory _symbol, string memory _name, uint8 _decimals, uint256 _totalSupply, uint256 _collateralizationRatio, uint256 _minCollateralizationRatio) public {
+        symbol = _symbol;
+        name = _name;
