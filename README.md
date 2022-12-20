@@ -1,5 +1,4 @@
 # CUSD
-
 pragma solidity ^0.6.0;
 
 import "https://github.com/cosmos/cosmos-sdk/x/auth/contracts/BaseAccount.sol";
@@ -64,3 +63,4 @@ contract Stablecoin {
         symbol = _symbol;
         name = _name;
        
+
